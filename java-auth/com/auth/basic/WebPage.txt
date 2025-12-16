@@ -1,0 +1,219 @@
+LoginJSP :
+
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Login Page</title>
+
+<style>
+
+body {
+	background-color : #73716d;
+}
+
+.outer-box {
+	margin : auto;
+	width : 30%;
+	background-color : #242322;	
+	padding : 30px;
+	margin-top : 150px;
+	border-radius : 20px;
+	border : 5px solid #ffc400;
+	color : white;
+}
+
+#uname-text {
+	margin-top : 10px;
+}
+
+#uname {
+	width : 98%;
+	margin-top : 10px;
+}
+
+#heading {
+	text-align : center;
+	font-size : 24px;
+	font-weight : 1000;
+}
+
+#but {
+	width : 45%;
+	margin-top : 30px;
+	height : 30px;
+	background-color : #ffc400;
+	border : none;
+}
+
+#but:hover {
+	border: 2px solid black;
+	background-color :#cc9d00;
+}
+
+</style>
+
+</head>
+<body>
+
+<form action="LoginServlet" method="post">
+<div class= "outer-box">
+	<div id="heading">LOGIN</div>
+	<div id="uname-text">Username</div>
+	<input type="text" id="uname" name="uname"/>
+	<div id="uname-text">Password</div>
+	<input type="password" id="pword" name="pword"/>
+	<div>
+		<input type="reset" id="but"/>
+		<input type="submit" value = "Submit" id="but" style="margin-left : 30px"/>	
+	</div>
+</div>
+</form>
+
+
+</body>
+</html>
+
+
+LoginValidation :
+
+package com.msc.dbms;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+
+public class Validation {
+	public static boolean loginValidity(String username, String password) {
+		boolean valid = false;
+		
+		try {
+			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/text_db", "student", "maths@2022");
+			Statement stmt = con.createStatement();
+			ResultSet rs = stmt.executeQuery("SELECT COUNT(*) FROM Users WHERE username=\"" + username + "\" AND password=\"" + password + "\"");
+			
+			while(rs.next()) {
+				if(rs.getInt(1) >= 1) {
+					valid = true;
+				}
+			}
+			
+			rs.close();
+			stmt.close();
+			con.close();
+		}
+		catch(Exception e) {
+			System.out.println(e);
+		}
+		
+		return valid;
+	}
+}
+
+
+LoginServlet :
+
+package com.msc.webapp;
+
+import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.msc.dbms.Validation;
+
+/**
+ * Servlet implementation class LoginServlet
+ */
+@WebServlet("/LoginServlet")
+public class LoginServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public LoginServlet() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String username = request.getParameter("uname");
+		String password = request.getParameter("pword");
+		
+		RequestDispatcher obj = null;
+		
+		if(Validation.loginValidity(username, password)) {
+			obj = request.getRequestDispatcher("/Result Pages/LoginSuccess.jsp");
+			request.setAttribute("uname", username);
+			obj.forward(request, response);
+		}
+		else {
+			obj = request.getRequestDispatcher("/Result Pages/LoginFailure.jsp");
+			request.setAttribute("uname", username);
+			obj.forward(request, response);
+		}
+	}
+}
+
+LoginSuccessPage :
+
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Login Successful</title>
+</head>
+<body>
+
+	<form action="LoginPage.jsp">
+		<%
+			String username = null;
+			if(request.getAttribute("uname") != null) {
+				username = (String) request.getAttribute("uname");
+			}
+		%>
+		<div style="color : green">Congratulations <%= username %>, you have successfully logged in :)</div>
+		<input type="submit" value = "Back"/>
+	</form>
+
+</body>
+</html>
+
+LoginFailurePage :
+
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Login Failed</title>
+</head>
+<body>
+
+	<form action="LoginPage.jsp">
+		<%
+			String username = null;
+			if(request.getAttribute("uname") != null) {
+				username = (String) request.getAttribute("uname");
+			}
+		%>
+		<div style="color : red">Sorry <%= username %>, you have failed to logged in :(</div>
+		<input type="submit" value = "Back"/>
+	</form>
+
+</body>
+</html>
