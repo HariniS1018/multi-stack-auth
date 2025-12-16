@@ -1,0 +1,17 @@
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE/editor files
+.vscode/
+.idea/
+*.swp
+
+# PHP cache/logs
+*.log
+*.cache
+*.session
+
+# Credentials
+config.php   # if you want to exclude real config
+.env         # if you use environment variables
