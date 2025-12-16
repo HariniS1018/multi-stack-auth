@@ -1,15 +1,17 @@
-package com.loginpackage;
+package com.auth.mvc.controllers;
 
-public class RegisterController extends SuperFuncs {
+import com.auth.mvc.functions.SuperFuncs;
+import com.auth.mvc.models.RegisterMod;
+
+public class RegisterController {
 	public static void registerUser() {
 		System.out.println("Enter your user name: ");
-		String name = input.next();
+		String name = SuperFuncs.input.nextLine();
 		System.out.println("Enter a valid password: ");
-		String pwd = input.next();
-		if(checkPattern(name,pwd) == true) {
-			String securePwd = getMd5(pwd);
-			RegisterMod modobj = new RegisterMod();
-      			modobj.storeUser(name, securePwd);
+		String pwd = SuperFuncs.input.nextLine();
+		if(SuperFuncs.checkPattern(name,pwd)) {
+			String securePwd = SuperFuncs.getMd5(pwd);
+			RegisterMod.storeUser(name, securePwd);
 		}
 		else {
 			System.out.println("Your username or password is not in required format");
