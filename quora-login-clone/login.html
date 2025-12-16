@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>Quora</title>
+    <style>
+        .screen-container{
+            display: flex;
+            justify-content: center;
+            height: 100vh;
+            align-items: center;
+            background-color: pink;
+        }
+        .parent{
+            width: 700px;
+            height: 530px;
+            background-color: white;
+            border: thin solid lightgray;
+        }
+        .title{
+            padding-top: 30px;
+            background-color: white;
+            height: 20%;
+            text-align: center;
+        }
+        .footer{
+            height: 20%;
+            background-color: transparent;
+            
+        }
+        .footer1{
+            text-align: center;
+            height: 50%;
+            font-size: small;
+        }
+        .footer2{
+            background-color: aliceblue;
+            height: 50%;
+            text-align: center;
+            font-weight: lighter;
+            font-size: small;
+            color: grey;
+            border: thin solid lightgray;
+        }
+        .title1{
+            font-size: 3em;
+            color: brown;
+            font-weight: bolder;
+            
+        }
+        .title2{
+            font-weight: bold;
+            padding-top: 5px;
+        }
+        .content{
+            background-color: white;
+            display: flex;
+            height: 60%;
+            justify-content: space-between;
+            padding-left: 10px;   
+        }
+        .left-content{
+            background-color: white;
+            height: 100%;
+            width: 49%;
+            margin-top: 30px;
+        }
+        .right-content{
+            background-color: white;
+            height: 100%;
+            width: 49%;
+            margin-top: 30px;
+            margin-left: 10px;
+        }
+        .msg{
+            font-weight: lighter;
+            color: darkgray;
+            margin-bottom: 15px;
+        }
+        .left-button-group{
+            padding: 5px;
+            flex-wrap: wrap;
+            align-content: space-between;
+        }
+        .parentbutton{
+            display: flex;
+            width: 200px;
+            height: 20px;
+            padding-top: 10px;
+            padding-bottom: 15px;
+            padding-left: 15px;
+            padding-right: 65px;
+            border: thin solid;
+            margin: 10px;
+            margin-bottom: 5px;
+        }
+        .parentbutton3{
+            display: flex;
+            width: 200px;
+            height: 20px;
+            padding: 10px;
+            padding-right: 65px;
+            border: thin solid;
+            margin: 10px;
+            margin-bottom: 5px;
+        }
+        .parentbutton2{
+            display: flex;
+            width: 200px;
+            height: 20px;
+            padding: 5px;
+            justify-content: center;
+            margin: 10px;
+        }
+        img{
+            width: 25px;
+            height: 20px;
+            transition: all 1s;
+            padding-right: 8px;
+        }
+        .text{
+            align-self: flex-end;
+            font-size: 16px;
+            
+        }
+        .text2{
+            align-self: flex-end;
+            padding-left: 40px;
+            font-size: large;
+            color: darkgray;
+        }
+        .assign{
+            font-weight: bold;
+            padding: 10px;
+        }
+        .forgotpwd{
+            color: lightgray;
+            padding: 5px;
+        }
+        .loginbutton{
+            box-sizing: border-box;
+            background-color: rgb(0, 195, 255);
+            display: inline-block;
+            padding: 10px;
+            margin-left: 100px;
+            border-radius: 12px;
+        }
+        </style>
+</head>
+<body>
+    <div class="screen-container">
+        <div class="parent">
+            <div class="title">
+                <div class="title1">Quora</div>
+                <div class="title2">A place to share knowledge and better understand the world</div>
+            </div>
+            <div class="content">
+                <div class="left-content">
+                    <div class="msg"> By continuing you indicate that you agree to Quora’s Terms of Service and Privacy Policy.</div>
+                    <div class="left-button-group">
+                        <div class="parentbutton">
+                            <div>
+                                <img src="google.JPG" alt="">
+                            </div>
+                            <div class="text">
+                                Continue with Google
+                            </div>
+                        </div>
+                        <div class="parentbutton">
+                            <div>
+                                <img src="FB.JPG" alt="">
+                            </div>
+                            <div class="text">
+                                Continue with Facebook
+                            </div>
+                        </div>
+                        <div class="parentbutton2">
+                            <div class="text2">
+                                sign up with email
+                            </div>
+                        </div>
+                </div>
+                </div><hr>
+                <div class="right-content">
+                    <div style="padding-left: 10px;">Login</div>
+                    <hr>
+                    <div class="assign">Email</div>
+                    <div class="parentbutton3"  style="margin-top: 2px; color: lightgray;" placeholder="Your email" type="email">
+                        
+                    </div>
+                    <div class="assign">Password</div>
+                    <div class="parentbutton3" style="margin-top: 2px; color: lightgray;" placeholder="Your Password" type="Password"></div>
+
+                    <table style="margin-top: 15px;"><tr style="display: flex;"><td class="forgotpwd">Forgot password?</td><td class="loginbutton">login</td></tr></table>
+                </div>
+            </div>
+            <div class="footer">
+                <div class="footer1">
+                    <div style="padding-top: 15px; padding-left: 42%; display: flex;">
+                        <div style="color: blue;">தமிழ்  .</div> 
+                        <div style="color: blue;"> हिन्दी  </div>
+                        
+                    </div>
+                </div>
+                <div class="footer2">
+                    <div style="padding: 15px;">
+                    About.Careers.Privacy.Terms.Contact.Languages.Your Ad Choices.Press©.Quora, Inc. 2023
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
